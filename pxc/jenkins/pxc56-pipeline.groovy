@@ -243,7 +243,7 @@ pipeline {
                         '''
                     }
                     step([$class: 'JUnitResultArchiver', testResults: 'pxc/sources/pxc/results/*.xml', healthScaleFactor: 1.0])
-                    archiveArtifacts 'pxc/sources/pxc/results/*.xml,pxc/sources/pxc/results/pxc56-test-mtr_logs.tar.gz'
+                    archiveArtifacts 'pxc/sources/pxc/results/*.xml,pxc/sources/pxc/results/*.output,pxc/sources/pxc/results/pxc56-test-mtr_logs.tar.gz'
                 }
         }
     }
