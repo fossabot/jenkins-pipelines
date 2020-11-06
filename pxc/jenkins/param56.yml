@@ -1,12 +1,12 @@
 - job:
-    name: pxc-5.6-param
+    name: test-pxc-5.6-param
     project-type: matrix
     defaults: global
     description: |
         Do not edit this job through the web!
     disabled: false
     concurrent: true
-    auth-token: pxc56testmtr
+    auth-token: testpxc56testmtr
     node: micro-amazon
     properties:
     - build-discarder:
@@ -87,7 +87,7 @@
           - ubuntu:xenial
     builders:
     - trigger-builds:
-      - project: pxc-5.6-pipeline
+      - project: test-pxc-5.6-pipeline
         current-parameters: true
         predefined-parameters: |
           DOCKER_OS=${DOCKER_OS}
@@ -100,12 +100,12 @@
     - shell: |
         sudo find . -name "*.xml" -o -name "*.log" -delete
     - copyartifact:
-        project: pxc-5.6-pipeline
+        project: test-pxc-5.6-pipeline
         which-build: specific-build
-        build-number: "${TRIGGERED_BUILD_NUMBERS_pxc_5_6_pipeline}"
+        build-number: "${TRIGGERED_BUILD_NUMBERS_test_pxc_5_6_pipeline}"
         do-not-fingerprint: true
     - shell: |
-        echo "${TRIGGERED_BUILD_NUMBERS_pxc_5_6_pipeline}" > PIPELINE_BUILD_NUMBER
+        echo "${TRIGGERED_BUILD_NUMBERS_test_pxc_5_6_pipeline}" > PIPELINE_BUILD_NUMBER
     publishers:
     - junit:
         results: "**/*.xml"
